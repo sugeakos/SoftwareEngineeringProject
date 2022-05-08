@@ -40,7 +40,6 @@ namespace Projekt
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.txtTvId = new System.Windows.Forms.TextBox();
             this.comboPersonId = new System.Windows.Forms.ComboBox();
             this.comboCategoryId = new System.Windows.Forms.ComboBox();
             this.txtErrorByCustomer = new System.Windows.Forms.TextBox();
@@ -58,11 +57,11 @@ namespace Projekt
             this.createRadio = new System.Windows.Forms.RadioButton();
             this.hasAnyMissingPart = new System.Windows.Forms.RadioButton();
             this.hasNoMissingParts = new System.Windows.Forms.RadioButton();
-            this.searchBtn = new System.Windows.Forms.Button();
             this.updateBtn = new System.Windows.Forms.Button();
             this.createNewBtn = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.txtPrice = new System.Windows.Forms.TextBox();
+            this.comboTvId = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -159,13 +158,6 @@ namespace Projekt
             this.label9.Size = new System.Drawing.Size(82, 13);
             this.label9.TabIndex = 10;
             this.label9.Text = "Hiányző elemek";
-            // 
-            // txtTvId
-            // 
-            this.txtTvId.Location = new System.Drawing.Point(141, 70);
-            this.txtTvId.Name = "txtTvId";
-            this.txtTvId.Size = new System.Drawing.Size(100, 20);
-            this.txtTvId.TabIndex = 11;
             // 
             // comboPersonId
             // 
@@ -283,6 +275,7 @@ namespace Projekt
             this.selectRadio.TabStop = true;
             this.selectRadio.Text = "Keresés";
             this.selectRadio.UseVisualStyleBackColor = true;
+            this.selectRadio.CheckedChanged += new System.EventHandler(this.selectRadio_CheckedChanged);
             // 
             // updateRadio
             // 
@@ -294,6 +287,7 @@ namespace Projekt
             this.updateRadio.TabStop = true;
             this.updateRadio.Text = "Szerkesztés";
             this.updateRadio.UseVisualStyleBackColor = true;
+            this.updateRadio.CheckedChanged += new System.EventHandler(this.updateRadio_CheckedChanged);
             // 
             // createRadio
             // 
@@ -305,6 +299,7 @@ namespace Projekt
             this.createRadio.TabStop = true;
             this.createRadio.Text = "Új megadása";
             this.createRadio.UseVisualStyleBackColor = true;
+            this.createRadio.CheckedChanged += new System.EventHandler(this.createRadio_CheckedChanged);
             // 
             // hasAnyMissingPart
             // 
@@ -316,6 +311,7 @@ namespace Projekt
             this.hasAnyMissingPart.TabStop = true;
             this.hasAnyMissingPart.Text = "Igen";
             this.hasAnyMissingPart.UseVisualStyleBackColor = true;
+            this.hasAnyMissingPart.CheckedChanged += new System.EventHandler(this.hasAnyMissingPart_CheckedChanged);
             // 
             // hasNoMissingParts
             // 
@@ -327,15 +323,7 @@ namespace Projekt
             this.hasNoMissingParts.TabStop = true;
             this.hasNoMissingParts.Text = "Nem";
             this.hasNoMissingParts.UseVisualStyleBackColor = true;
-            // 
-            // searchBtn
-            // 
-            this.searchBtn.Location = new System.Drawing.Point(588, 250);
-            this.searchBtn.Name = "searchBtn";
-            this.searchBtn.Size = new System.Drawing.Size(130, 43);
-            this.searchBtn.TabIndex = 22;
-            this.searchBtn.Text = "Keresés";
-            this.searchBtn.UseVisualStyleBackColor = true;
+            this.hasNoMissingParts.CheckedChanged += new System.EventHandler(this.hasNoMissingParts_CheckedChanged);
             // 
             // updateBtn
             // 
@@ -345,6 +333,7 @@ namespace Projekt
             this.updateBtn.TabIndex = 23;
             this.updateBtn.Text = "Szerkesztés";
             this.updateBtn.UseVisualStyleBackColor = true;
+            this.updateBtn.Click += new System.EventHandler(this.updateBtn_Click);
             // 
             // createNewBtn
             // 
@@ -354,6 +343,7 @@ namespace Projekt
             this.createNewBtn.TabIndex = 24;
             this.createNewBtn.Text = "Új megadása";
             this.createNewBtn.UseVisualStyleBackColor = true;
+            this.createNewBtn.Click += new System.EventHandler(this.createNewBtn_Click);
             // 
             // label10
             // 
@@ -371,16 +361,25 @@ namespace Projekt
             this.txtPrice.Size = new System.Drawing.Size(100, 20);
             this.txtPrice.TabIndex = 26;
             // 
+            // comboTvId
+            // 
+            this.comboTvId.FormattingEnabled = true;
+            this.comboTvId.Location = new System.Drawing.Point(141, 62);
+            this.comboTvId.Name = "comboTvId";
+            this.comboTvId.Size = new System.Drawing.Size(121, 21);
+            this.comboTvId.TabIndex = 27;
+            this.comboTvId.SelectedValueChanged += new System.EventHandler(this.comboTvId_SelectedValueChanged);
+            // 
             // CreateOrEditTv
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.comboTvId);
             this.Controls.Add(this.txtPrice);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.createNewBtn);
             this.Controls.Add(this.updateBtn);
-            this.Controls.Add(this.searchBtn);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.txtMissingParts);
@@ -391,7 +390,6 @@ namespace Projekt
             this.Controls.Add(this.txtErrorByCustomer);
             this.Controls.Add(this.comboCategoryId);
             this.Controls.Add(this.comboPersonId);
-            this.Controls.Add(this.txtTvId);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
@@ -430,7 +428,6 @@ namespace Projekt
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox txtTvId;
         private System.Windows.Forms.ComboBox comboPersonId;
         private System.Windows.Forms.ComboBox comboCategoryId;
         private System.Windows.Forms.TextBox txtErrorByCustomer;
@@ -448,10 +445,10 @@ namespace Projekt
         private System.Windows.Forms.RadioButton selectRadio;
         private System.Windows.Forms.RadioButton hasNoMissingParts;
         private System.Windows.Forms.RadioButton hasAnyMissingPart;
-        private System.Windows.Forms.Button searchBtn;
         private System.Windows.Forms.Button updateBtn;
         private System.Windows.Forms.Button createNewBtn;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox txtPrice;
+        private System.Windows.Forms.ComboBox comboTvId;
     }
 }
