@@ -175,11 +175,7 @@ namespace Projekt
             txtPhoneMobile.Text = "";
             txtPhonFix.Text = "";
         }
-        private string firstLetterCapital(string str)
-        {
-            return Char.ToUpper(str[0]) + str.Remove(0, 1);
-        }
-
+     
         private string selectCommandString(string searchBy, string param)
         {
             return @"select * from person where " + searchBy + " like   "+ param ;
@@ -191,20 +187,18 @@ namespace Projekt
             {
                 
 
-                String connString = @"Data Source=AKOS-PC;Initial Catalog=PG_Elektron;Integrated Security=True";
-                SqlConnection sqlConnection = new SqlConnection(connString);
+                
+                SqlConnection sqlConnection = new SqlConnection(GlobalConstants.DATA_CONNECTION_STRING);
                 string selectPersonByFirstNameCmdString = selectCommandString("first_name", "'%' + @firstName + '%'");
-                MessageBox.Show(selectPersonByFirstNameCmdString);
-                SqlCommand selectSqlCommand = new SqlCommand(selectPersonByFirstNameCmdString, sqlConnection);
-                //selectSqlCommand.Parameters.Clear();
-                selectSqlCommand.Parameters.AddWithValue("@firstName", firstLetterCapital(txtFirstName.Text));
+                SqlCommand selectPersonSqlCommand = new SqlCommand(selectPersonByFirstNameCmdString, sqlConnection);
+                selectPersonSqlCommand.Parameters.AddWithValue("@firstName",GlobalConstants.firstLetterCapital(txtFirstName.Text));
 
                 try
                 {
 
                     
                     sqlConnection.Open();
-                    SqlDataReader reader = selectSqlCommand.ExecuteReader(CommandBehavior.SingleRow);
+                    SqlDataReader reader = selectPersonSqlCommand.ExecuteReader(CommandBehavior.SingleRow);
                     if (reader.Read())
                     {
                         txtPersonId.Text = reader[0].ToString();
@@ -219,7 +213,7 @@ namespace Projekt
 
                     else
                     {
-                        MessageBox.Show("Can't find person with this first name: " + txtFirstName.Text);
+                        MessageBox.Show("Nem található személy ezzel a névvel: " + txtFirstName.Text,"Nem található személy!",MessageBoxButtons.OK,MessageBoxIcon.Error);
                     }
                 }
                 catch (SqlException ex)
@@ -239,13 +233,13 @@ namespace Projekt
             if(searchByLastNameRadio.Checked)
             {
                 
-                String connString = @"Data Source=AKOS-PC;Initial Catalog=PG_Elektron;Integrated Security=True";
-                SqlConnection sqlConnection2 = new SqlConnection(connString);
+                
+                SqlConnection sqlConnection2 = new SqlConnection(GlobalConstants.DATA_CONNECTION_STRING);
                 string selectPersonByLastNameCmdString = selectCommandString("last_name", "'%' + @lastName + '%'");
                 MessageBox.Show(selectPersonByLastNameCmdString);
                 SqlCommand selectSqlCommand = new SqlCommand(selectPersonByLastNameCmdString, sqlConnection2);
                 //selectSqlCommand.Parameters.Clear();
-                selectSqlCommand.Parameters.AddWithValue("@lastName", firstLetterCapital(txtLastName.Text));
+                selectSqlCommand.Parameters.AddWithValue("@lastName",GlobalConstants.firstLetterCapital(txtLastName.Text));
                 try
                 {
 
@@ -266,7 +260,7 @@ namespace Projekt
 
                     else
                     {
-                        MessageBox.Show("Can't find person with this last name: " + txtLastName.Text);
+                        MessageBox.Show("Nem található személy ezzel a vezetéknévvel: " + txtLastName.Text, "Nem található személy",MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 catch (SqlException ex)
@@ -286,14 +280,12 @@ namespace Projekt
 
             if(searchByEmailRadio.Checked)
             {
+                SqlConnection sqlConnection3 = new SqlConnection(GlobalConstants.DATA_CONNECTION_STRING);
+                string selectPersonByEmailCmdString = selectCommandString("email", "'%' + @email + '%'");
                 
-                String connString = @"Data Source=AKOS-PC;Initial Catalog=PG_Elektron;Integrated Security=True";
-                SqlConnection sqlConnection3 = new SqlConnection(connString);
-                string selectPersonByLastNameCmdString = selectCommandString("email", "'%' + @email + '%'");
-                MessageBox.Show(selectPersonByLastNameCmdString);
-                SqlCommand selectSqlCommand = new SqlCommand(selectPersonByLastNameCmdString, sqlConnection3);
+                SqlCommand selectSqlCommand = new SqlCommand(selectPersonByEmailCmdString, sqlConnection3);
                 //selectSqlCommand.Parameters.Clear();
-                selectSqlCommand.Parameters.AddWithValue("@email", firstLetterCapital(txtEmail.Text));
+                selectSqlCommand.Parameters.AddWithValue("@email", txtEmail.Text);
                 try
                 {
 
@@ -314,7 +306,7 @@ namespace Projekt
 
                     else
                     {
-                        MessageBox.Show("Can't find person with this email: " + txtEmail.Text);
+                        MessageBox.Show("Nem található személy ezzel az email címmel: " + txtEmail.Text, "Nem található személy", MessageBoxButtons.OK,MessageBoxIcon.Error);
                     }
                 }
                 catch (SqlException ex)
@@ -340,12 +332,12 @@ namespace Projekt
                 }
                 else
                 {
-                    String connString = @"Data Source=AKOS-PC;Initial Catalog=PG_Elektron;Integrated Security=True";
-                    SqlConnection sqlConnection4 = new SqlConnection(connString);
-                    string selectPersonByLastNameCmdString = selectCommandString("phone_mobile", "'%' + @mobile + '%'");
-                    MessageBox.Show(selectPersonByLastNameCmdString);
-                    SqlCommand selectSqlCommand = new SqlCommand(selectPersonByLastNameCmdString, sqlConnection4);
-                    //selectSqlCommand.Parameters.Clear();
+                    
+                    SqlConnection sqlConnection4 = new SqlConnection(GlobalConstants.DATA_CONNECTION_STRING);
+                    string selectPersonByMobileNumberCmdString = selectCommandString("phone_mobile", "'%' + @mobile + '%'");
+                  
+                    SqlCommand selectSqlCommand = new SqlCommand(selectPersonByMobileNumberCmdString, sqlConnection4);
+                  
                     selectSqlCommand.Parameters.AddWithValue("@mobile", txtPhoneMobile.Text);
                     try
                     {
@@ -367,9 +359,10 @@ namespace Projekt
 
                         else
                         {
-                            MessageBox.Show("Can't find person with this mobile: " + txtPhoneMobile.Text);
+                            MessageBox.Show("Nem található személy ezzel a mobil számmal: " + txtPhoneMobile.Text, "Nem található személy", MessageBoxButtons.OK,MessageBoxIcon.Error);
                         }
                     }
+                   
                     catch (SqlException ex)
                     {
 
@@ -394,12 +387,12 @@ namespace Projekt
                 }
                 else
                 {
-                    String connString = @"Data Source=AKOS-PC;Initial Catalog=PG_Elektron;Integrated Security=True";
-                    SqlConnection sqlConnection5 = new SqlConnection(connString);
-                    string selectPersonByLastNameCmdString = selectCommandString("phone_fix", "'%' + @fix + '%'");
-                    MessageBox.Show(selectPersonByLastNameCmdString);
-                    SqlCommand selectSqlCommand = new SqlCommand(selectPersonByLastNameCmdString, sqlConnection5);
-                    //selectSqlCommand.Parameters.Clear();
+                    
+                    SqlConnection sqlConnection5 = new SqlConnection(GlobalConstants.DATA_CONNECTION_STRING);
+                    string selectPersonByFixPhoneNumberCmdString = selectCommandString("phone_fix", "'%' + @fix + '%'");
+                   
+                    SqlCommand selectSqlCommand = new SqlCommand(selectPersonByFixPhoneNumberCmdString, sqlConnection5);
+                   
                     selectSqlCommand.Parameters.AddWithValue("@fix", txtPhoneMobile.Text);
                     try
                     {
@@ -421,7 +414,7 @@ namespace Projekt
 
                         else
                         {
-                            MessageBox.Show("Can't find person with this mobile: " + txtPhonFix.Text);
+                            MessageBox.Show("Nem található személy ezzel a telefon számmal: " + txtPhonFix.Text, "Nem található személy", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                     catch (SqlException ex)
@@ -692,17 +685,17 @@ namespace Projekt
         {
             String connString = @"Data Source=AKOS-PC;Initial Catalog=PG_Elektron;Integrated Security=True";
             SqlConnection sqlConnection = new SqlConnection(connString);
-            string createNewPErson = "insert into person (first_name, last_name, address_line, email, join_date, phone_fix, phone_mobile) values (@firstName, @lastName, @address, @email, @joinDate, @phoneFix, @phoneMobile)";
+            string createNewPerson = GlobalConstants.INSERT_PERSON_STRING + " (@firstName, @lastName, @address, @email, @joinDate, @phoneFix, @phoneMobile)";
             
-            SqlCommand selectSqlCommand = new SqlCommand(createNewPErson, sqlConnection);
+            SqlCommand createNewSqlCommand = new SqlCommand(createNewPerson, sqlConnection);
             //selectSqlCommand.Parameters.Clear();
-            selectSqlCommand.Parameters.AddWithValue("@firstName", firstLetterCapital(txtFirstName.Text));
-            selectSqlCommand.Parameters.AddWithValue("@lastName", firstLetterCapital(txtLastName.Text));
-            selectSqlCommand.Parameters.AddWithValue("@address", firstLetterCapital(txtAddress.Text));
-            selectSqlCommand.Parameters.AddWithValue("@email", txtEmail.Text);
-            selectSqlCommand.Parameters.AddWithValue("@joinDate", DateTime.Now);
-            selectSqlCommand.Parameters.AddWithValue("@phoneFix", txtPhonFix.Text);
-            selectSqlCommand.Parameters.AddWithValue("@phoneMobile", txtPhoneMobile.Text);
+            createNewSqlCommand.Parameters.AddWithValue("@firstName",GlobalConstants. firstLetterCapital(txtFirstName.Text));
+            createNewSqlCommand.Parameters.AddWithValue("@lastName",GlobalConstants. firstLetterCapital(txtLastName.Text));
+            createNewSqlCommand.Parameters.AddWithValue("@address",GlobalConstants. firstLetterCapital(txtAddress.Text));
+            createNewSqlCommand.Parameters.AddWithValue("@email", txtEmail.Text);
+            createNewSqlCommand.Parameters.AddWithValue("@joinDate", DateTime.Now);
+            createNewSqlCommand.Parameters.AddWithValue("@phoneFix", txtPhonFix.Text);
+            createNewSqlCommand.Parameters.AddWithValue("@phoneMobile", txtPhoneMobile.Text);
 
             if (txtPhoneMobile.Text.Length > 13 && txtPhonFix.Text.Length > 13 && txtPhoneMobile.Text.Contains(@"^\\\\d{12}$") && txtPhonFix.Text.Contains(@"^\\\\d{12}$"))
             {
@@ -715,15 +708,15 @@ namespace Projekt
 
 
                     sqlConnection.Open();
-                    int result = selectSqlCommand.ExecuteNonQuery();
+                    int result = createNewSqlCommand.ExecuteNonQuery();
                     if (result > 0)
                     {
-                        MessageBox.Show("YEEEEE");
+                        MessageBox.Show("Sikeres bevitel", "Siker", MessageBoxButtons.OK,MessageBoxIcon.Information);
                     }
 
                     else
                     {
-                        MessageBox.Show("Shit happens " );
+                        MessageBox.Show("Sikertelen bevitel ","Hiba", MessageBoxButtons.OK,MessageBoxIcon.Error );
                     }
                 }
                 catch (SqlException ex)
@@ -748,19 +741,19 @@ namespace Projekt
 
         private void updatePersonBtn_Click(object sender, EventArgs e)
         {
-            String connString = @"Data Source=AKOS-PC;Initial Catalog=PG_Elektron;Integrated Security=True";
+            String connString = GlobalConstants.DATA_CONNECTION_STRING;
             SqlConnection sqlConnection = new SqlConnection(connString);
-            string createNewPErson = "update person set first_name = @firstName , last_name = @lastName, address_line = @address, email = @email, phone_fix = @phoneFix, phone_mobile = @phoneMobile where id = @id";
+            string updatePerson = "update person set first_name = @firstName , last_name = @lastName, address_line = @address, email = @email, phone_fix = @phoneFix, phone_mobile = @phoneMobile where id = @id";
 
-            SqlCommand selectSqlCommand = new SqlCommand(createNewPErson, sqlConnection);
-            //selectSqlCommand.Parameters.Clear();
-            selectSqlCommand.Parameters.AddWithValue("@id", Convert.ToInt32(txtPersonId.Text));
-            selectSqlCommand.Parameters.AddWithValue("@firstName", firstLetterCapital(txtFirstName.Text));
-            selectSqlCommand.Parameters.AddWithValue("@lastName", firstLetterCapital(txtLastName.Text));
-            selectSqlCommand.Parameters.AddWithValue("@address", firstLetterCapital(txtAddress.Text));
-            selectSqlCommand.Parameters.AddWithValue("@email", txtEmail.Text);
-            selectSqlCommand.Parameters.AddWithValue("@phoneFix", txtPhonFix.Text);
-            selectSqlCommand.Parameters.AddWithValue("@phoneMobile", txtPhoneMobile.Text);
+            SqlCommand updateSqlCommand = new SqlCommand(updatePerson, sqlConnection);
+            
+            updateSqlCommand.Parameters.AddWithValue("@id", Convert.ToInt32(txtPersonId.Text));
+            updateSqlCommand.Parameters.AddWithValue("@firstName",GlobalConstants. firstLetterCapital(txtFirstName.Text));
+            updateSqlCommand.Parameters.AddWithValue("@lastName",GlobalConstants. firstLetterCapital(txtLastName.Text));
+            updateSqlCommand.Parameters.AddWithValue("@address",GlobalConstants. firstLetterCapital(txtAddress.Text));
+            updateSqlCommand.Parameters.AddWithValue("@email", txtEmail.Text);
+            updateSqlCommand.Parameters.AddWithValue("@phoneFix", txtPhonFix.Text);
+            updateSqlCommand.Parameters.AddWithValue("@phoneMobile", txtPhoneMobile.Text);
 
             if (txtPhoneMobile.Text.Length > 13 && txtPhonFix.Text.Length > 13 && txtPhoneMobile.Text.Contains(@"^\\\\d{12}$") && txtPhonFix.Text.Contains(@"^\\\\d{12}$"))
             {
@@ -773,15 +766,15 @@ namespace Projekt
 
 
                     sqlConnection.Open();
-                    int result = selectSqlCommand.ExecuteNonQuery();
+                    int result = updateSqlCommand.ExecuteNonQuery();
                     if (result > 0)
                     {
-                        MessageBox.Show("YEEEEE");
+                        MessageBox.Show("Sikeres frissítés", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
 
                     else
                     {
-                        MessageBox.Show("Shit happens ");
+                        MessageBox.Show("Sikertelen frissítés ", "Nem sikerült", MessageBoxButtons.OK,MessageBoxIcon.Error);
                     }
                 }
                 catch (SqlException ex)
@@ -789,7 +782,8 @@ namespace Projekt
 
                     throw ex;
                 }
-                catch (Exception ex)
+               
+                catch(Exception ex)
                 {
                     throw ex;
                 }

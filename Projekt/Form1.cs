@@ -45,5 +45,13 @@ namespace Projekt
             createOrEditTv.Show(this);
             Hide();
         }
+
+        private void createPdfBtn_Click(object sender, EventArgs e)
+        {
+            CreatePdf createPdf = new CreatePdf();
+            createPdf.Tag = this;
+            createPdf.Show(this);
+            Hide();
+        }
     }
 }

@@ -35,12 +35,12 @@ namespace Projekt
         private void selectCategoryBtn_Click(object sender, EventArgs e)
         {
             txtCategoryId.ReadOnly = true;
-            String connString = @"Data Source=AKOS-PC;Initial Catalog=PG_Elektron;Integrated Security=True";
-            SqlConnection sqlConnection = new SqlConnection(connString);
+            
+            SqlConnection sqlConnection = new SqlConnection(GlobalConstants.DATA_CONNECTION_STRING);
             string selectCategoryByNameCmd = @"select * from tv_category where category_name like '%' + @catName + '%'";
             SqlCommand selectSqlCommand = new SqlCommand(selectCategoryByNameCmd, sqlConnection);
             //selectSqlCommand.Parameters.Clear();
-            selectSqlCommand.Parameters.AddWithValue("@catName", firstLetterCapital( txtCategoryName.Text));
+            selectSqlCommand.Parameters.AddWithValue("@catName",GlobalConstants. firstLetterCapital( txtCategoryName.Text));
 
             try
             {
@@ -56,7 +56,7 @@ namespace Projekt
 
                 else
                 {
-                    MessageBox.Show("Can't find category with this name: " + txtCategoryName.Text);
+                    MessageBox.Show("A keresett márka nem található: " + txtCategoryName.Text, "Nem található", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (SqlException ex)
@@ -117,12 +117,12 @@ namespace Projekt
 
         private void createNewCategoryBtn_Click(object sender, EventArgs e)
         {
-            String connString = @"Data Source=AKOS-PC;Initial Catalog=PG_Elektron;Integrated Security=True";
-            SqlConnection sqlConnection = new SqlConnection(connString);
+            
+            SqlConnection sqlConnection = new SqlConnection(GlobalConstants.DATA_CONNECTION_STRING);
             string createNewCategoryCmd = @"insert into tv_category (category_name) values (@catName)";
             SqlCommand selectSqlCommand = new SqlCommand(createNewCategoryCmd, sqlConnection);
-            //selectSqlCommand.Parameters.Clear();
-            selectSqlCommand.Parameters.AddWithValue("@catName", firstLetterCapital( txtCategoryName.Text));
+            
+            selectSqlCommand.Parameters.AddWithValue("@catName",GlobalConstants. firstLetterCapital( txtCategoryName.Text));
 
             try
             {
@@ -132,12 +132,12 @@ namespace Projekt
                 int result = selectSqlCommand.ExecuteNonQuery();
                 if (result > 0)
                 {
-                    MessageBox.Show("YEEEE");
+                    MessageBox.Show("Sikeres bevitel", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
 
                 else
                 {
-                    MessageBox.Show("Shit happens ");
+                    MessageBox.Show("Hiba ", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (SqlException ex)
@@ -150,20 +150,17 @@ namespace Projekt
                 sqlConnection.Close();
             }
         }
-        private string firstLetterCapital(string str)
-        {
-            return Char.ToUpper(str[0]) + str.Remove(0, 1);
-        }
+      
 
         private void updateCategoryBtn_Click(object sender, EventArgs e)
         {
-            String connString = @"Data Source=AKOS-PC;Initial Catalog=PG_Elektron;Integrated Security=True";
-            SqlConnection sqlConnection = new SqlConnection(connString);
+            
+            SqlConnection sqlConnection = new SqlConnection(GlobalConstants.DATA_CONNECTION_STRING);
             string createNewCategoryCmd = @"update tv_category set category_name = @catName where id = @id";
             SqlCommand selectSqlCommand = new SqlCommand(createNewCategoryCmd, sqlConnection);
             //selectSqlCommand.Parameters.Clear();
             selectSqlCommand.Parameters.AddWithValue("@id", Convert.ToInt32(txtCategoryId.Text));
-            selectSqlCommand.Parameters.AddWithValue("@catName", firstLetterCapital(txtCategoryName.Text));
+            selectSqlCommand.Parameters.AddWithValue("@catName",GlobalConstants. firstLetterCapital(txtCategoryName.Text));
 
             try
             {
@@ -173,13 +170,13 @@ namespace Projekt
                 int result = selectSqlCommand.ExecuteNonQuery();
                 if (result > 0)
                 {
-                    MessageBox.Show("YEEEE");
+                   
                     
                 }
 
                 else
                 {
-                    MessageBox.Show("Shit happens ");
+                    MessageBox.Show("Hiba történt ","Hiba", MessageBoxButtons.OK,MessageBoxIcon.Error);
                 }
             }
             catch (SqlException ex)

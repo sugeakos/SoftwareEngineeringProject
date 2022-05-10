@@ -58,13 +58,12 @@ namespace Projekt
 
         private void fillPersonCombo()
         {
-            String connString = @"Data Source=AKOS-PC;Initial Catalog=PG_Elektron;Integrated Security=True";
-            SqlConnection sqlConnection = new SqlConnection(connString);
+            SqlConnection sqlConnection = new SqlConnection(GlobalConstants.DATA_CONNECTION_STRING);
             string selectPersonString = "select id, last_name + ' ' + first_name as Name from person";
             try
             {
                 sqlConnection.Open();
-                SqlDataAdapter sda = new SqlDataAdapter(selectPersonString, connString);
+                SqlDataAdapter sda = new SqlDataAdapter(selectPersonString, GlobalConstants.DATA_CONNECTION_STRING);
                 DataTable dt = new DataTable();
                 sda.Fill(dt);
                 DataRow row = dt.NewRow();
@@ -92,13 +91,13 @@ namespace Projekt
         }
         private void fillTvCombo()
         {
-            String connString = @"Data Source=AKOS-PC;Initial Catalog=PG_Elektron;Integrated Security=True";
-            SqlConnection sqlConnection3 = new SqlConnection(connString);
-            string selectPersonString = "select id from tv";
+            
+            SqlConnection sqlConnection3 = new SqlConnection(GlobalConstants.DATA_CONNECTION_STRING);
+            string selectTvString = "select id from tv";
             try
             {
                 sqlConnection3.Open();
-                SqlDataAdapter sda = new SqlDataAdapter(selectPersonString, connString);
+                SqlDataAdapter sda = new SqlDataAdapter(selectTvString, GlobalConstants.DATA_CONNECTION_STRING);
                 DataTable dt = new DataTable();
                 sda.Fill(dt);
                 DataRow row = dt.NewRow();
@@ -126,13 +125,13 @@ namespace Projekt
         }
         private void fillTvCategoryCombo()
         {
-            String connString = @"Data Source=AKOS-PC;Initial Catalog=PG_Elektron;Integrated Security=True";
-            SqlConnection sqlConnection2 = new SqlConnection(connString);
-            string selectPersonString = "select id, category_name from tv_category";
+            
+            SqlConnection sqlConnection2 = new SqlConnection(GlobalConstants.DATA_CONNECTION_STRING);
+            string selectTvCategoryString = GlobalConstants.SELECT_FROM_TV_CATEGORY_STRING;
             try
             {
                 sqlConnection2.Open();
-                SqlDataAdapter sda = new SqlDataAdapter(selectPersonString, connString);
+                SqlDataAdapter sda = new SqlDataAdapter(selectTvCategoryString, GlobalConstants.DATA_CONNECTION_STRING);
                 DataTable dt = new DataTable();
                 sda.Fill(dt);
                 DataRow row = dt.NewRow();
@@ -320,20 +319,18 @@ namespace Projekt
             {
 
 
-                String connString = @"Data Source=AKOS-PC;Initial Catalog=PG_Elektron;Integrated Security=True";
-                SqlConnection sqlConnection = new SqlConnection(connString);
-                string createNewTv = "insert into tv (person_id, tv_category_id, error_seen_by_customer, is_it_still_in_progress, reserved_date_to_repair, has_any_missing_parts, missing_parts) " +
-                    "values (@personID, @categoryID,@errorByCustomer,@isStillInProgress , @reservedDate, @hasAnyMissingParts, @missingParts) ";
+                SqlConnection sqlConnection = new SqlConnection(GlobalConstants.DATA_CONNECTION_STRING);
+                string createNewTv = GlobalConstants.INSERT_TO_TV_STRING +" (@personID, @categoryID,@errorByCustomer,@isStillInProgress , @reservedDate, @hasAnyMissingParts, @missingParts) ";
                 
                 SqlCommand selectSqlCommand = new SqlCommand(createNewTv, sqlConnection);
                 //selectSqlCommand.Parameters.Clear();
-                selectSqlCommand.Parameters.AddWithValue("@personID", comboPersonId.SelectedValue);
-                selectSqlCommand.Parameters.AddWithValue("@categoryID", comboCategoryId.SelectedValue);
-                selectSqlCommand.Parameters.AddWithValue("@errorByCustomer", txtErrorByCustomer.Text);
+                selectSqlCommand.Parameters.AddWithValue("@personID", Convert.ToInt32(comboPersonId.SelectedValue));
+                selectSqlCommand.Parameters.AddWithValue("@categoryID", Convert.ToInt32(comboCategoryId.SelectedValue));
+                selectSqlCommand.Parameters.AddWithValue("@errorByCustomer",GlobalConstants.firstLetterCapital( txtErrorByCustomer.Text));
                 selectSqlCommand.Parameters.AddWithValue("@isStillInProgress", isStillInProgress);
                 selectSqlCommand.Parameters.AddWithValue("@reservedDate", DateTime.Now);
                 selectSqlCommand.Parameters.AddWithValue("@hasAnyMissingParts", missingPart);
-                selectSqlCommand.Parameters.AddWithValue("@missingParts", txtMissingParts.Text);
+                selectSqlCommand.Parameters.AddWithValue("@missingParts",GlobalConstants.firstLetterCapital( txtMissingParts.Text));
 
 
                 try
@@ -349,7 +346,7 @@ namespace Projekt
 
                     else
                     {
-                        MessageBox.Show("Shit happens");
+                        MessageBox.Show("Hiba történt", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 catch (SqlException ex)
@@ -364,9 +361,10 @@ namespace Projekt
                 finally
                 {
                     sqlConnection.Close();
+                    clearTextBoxes();
                 }
 
-                string insertIntoCustomer = "insert into customer (customer_person_id, customers_tv_id) values (@personId, @tvId)";
+                string insertIntoCustomer = GlobalConstants.INSERT_TO_CUSTOMER_STRING + " (@personId, @tvId)";
                 SqlCommand insertToCustomer = new SqlCommand(insertIntoCustomer, sqlConnection);
                 //selectSqlCommand.Parameters.Clear();
                 insertToCustomer.Parameters.AddWithValue("@personId", comboPersonId.SelectedValue);
@@ -380,12 +378,12 @@ namespace Projekt
                     int result = insertToCustomer.ExecuteNonQuery();
                     if (result > 0)
                     {
-                        MessageBox.Show("YEEEE");
+                        
                     }
 
                     else
                     {
-                        MessageBox.Show("Shit happens");
+                        MessageBox.Show("Hiba történt", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 catch (SqlException ex)
@@ -416,11 +414,11 @@ namespace Projekt
 
         private void comboTvId_SelectedValueChanged(object sender, EventArgs e)
         {
-            String connString = @"Data Source=AKOS-PC;Initial Catalog=PG_Elektron;Integrated Security=True";
-            SqlConnection sqlConnection = new SqlConnection(connString);
-            string fillTextBoxes = "select * from tv where id = @id";
+            
+            SqlConnection sqlConnection = new SqlConnection(GlobalConstants.DATA_CONNECTION_STRING);
+            string fillTextBoxes = GlobalConstants.SELECT_EVERYTHING_FRON_TV_STRING + " @id";
             SqlCommand selectSqlCommand = new SqlCommand(fillTextBoxes, sqlConnection);
-            selectSqlCommand.Parameters.Clear();
+          
             selectSqlCommand.Parameters.AddWithValue("@id", Convert.ToInt32(comboTvId.SelectedIndex.ToString()));
 
             try
@@ -461,7 +459,7 @@ namespace Projekt
 
                 else
                 {
-                    //MessageBox.Show("Can't find person with this first name: " + txtFirstName.Text);
+                   
                 }
             }
             
@@ -482,32 +480,35 @@ namespace Projekt
             {
                 isStillInProgress = 0;
             }
-            String connString = @"Data Source=AKOS-PC;Initial Catalog=PG_Elektron;Integrated Security=True";
-            SqlConnection sqlConnection = new SqlConnection(connString);
-            string insertIntoCustomer = "update tv set date_of_correction = @dateOfCorrection, is_it_still_in_progress = @isInProgress, repaired_error = @correctedError, price = @price where id = @id";
-            SqlCommand insertToCustomer = new SqlCommand(insertIntoCustomer, sqlConnection);
-            //selectSqlCommand.Parameters.Clear();
-            insertToCustomer.Parameters.AddWithValue("@id", Convert.ToInt32(comboTvId.SelectedValue));
-            insertToCustomer.Parameters.AddWithValue("@dateOfCorrection",DateTime.Now);
-            insertToCustomer.Parameters.AddWithValue("@isInProgress", Convert.ToInt32(isStillInProgress));
-            insertToCustomer.Parameters.AddWithValue("@correctedError", txtCorrectedError.Text);
-            insertToCustomer.Parameters.AddWithValue("@price", Convert.ToInt32(txtPrice.Text));
+            
+            SqlConnection sqlConnection = new SqlConnection(GlobalConstants.DATA_CONNECTION_STRING);
+            string updateTvTable = "update tv set date_of_correction = @dateOfCorrection, is_it_still_in_progress = @isInProgress, repaired_error = @correctedError, price = @price where id = @id";
+            SqlCommand updateTv = new SqlCommand(updateTvTable, sqlConnection);
+            updateTv.Parameters.AddWithValue("@id", Convert.ToInt32(comboTvId.SelectedValue));
+            updateTv.Parameters.AddWithValue("@dateOfCorrection",DateTime.Now);
+            updateTv.Parameters.AddWithValue("@isInProgress", Convert.ToInt32(isStillInProgress));
+            updateTv.Parameters.AddWithValue("@correctedError",GlobalConstants.firstLetterCapital( txtCorrectedError.Text));
+            updateTv.Parameters.AddWithValue("@price", Convert.ToInt32(txtPrice.Text));
 
             try
             {
 
 
                 sqlConnection.Open();
-                int result = insertToCustomer.ExecuteNonQuery();
+                int result = updateTv.ExecuteNonQuery();
                 if (result > 0)
                 {
-                    MessageBox.Show("YEEEE");
+                    
                 }
 
                 else
                 {
-                    MessageBox.Show("Shit happens");
+                    MessageBox.Show("Hiba történt", "Hiba", MessageBoxButtons.OK,MessageBoxIcon.Error);
                 }
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("A 'Javítás ára' mező csak számokat tartalmazhat", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (SqlException ex)
             {
@@ -522,6 +523,7 @@ namespace Projekt
             {
                 sqlConnection.Close();
             }
+            clearTextBoxes();
         }
     }
     

@@ -79,6 +79,7 @@ namespace Projekt
             this.createPdfBtn.TabIndex = 3;
             this.createPdfBtn.Text = "Create new PDF";
             this.createPdfBtn.UseVisualStyleBackColor = true;
+            this.createPdfBtn.Click += new System.EventHandler(this.createPdfBtn_Click);
             // 
             // exitBtn
             // 
