@@ -16,6 +16,9 @@ namespace Projekt
         public const string INSERT_TO_CUSTOMER_STRING = "insert into customer (customer_person_id, customers_tv_id) values";
         public const string INSERT_TO_TV_STRING = "insert into tv (person_id, tv_category_id, error_seen_by_customer, is_it_still_in_progress, reserved_date_to_repair, has_any_missing_parts, missing_parts) values ";
         public const string SELECT_FROM_TV_CATEGORY_STRING = "select id, category_name from tv_category";
+        public const string DEFAULT_FILE_OUTPUT_DIRECTORY = @"C:\Users\sugea\Desktop\pdfek\";
+        public const string EMAIL = "pg-elektron@gmail.com";
+        public const string PHONE = "024 666 666";
 
         public static string firstLetterCapital(string str)
         {

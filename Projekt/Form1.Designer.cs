@@ -44,7 +44,7 @@ namespace Projekt
             this.addNewPersonBtn.Name = "addNewPersonBtn";
             this.addNewPersonBtn.Size = new System.Drawing.Size(134, 56);
             this.addNewPersonBtn.TabIndex = 0;
-            this.addNewPersonBtn.Text = "Create new person";
+            this.addNewPersonBtn.Text = "Új személy hozzáadása";
             this.addNewPersonBtn.UseVisualStyleBackColor = true;
             this.addNewPersonBtn.Click += new System.EventHandler(this.addNewPersonBtn_Click);
             // 
@@ -55,7 +55,7 @@ namespace Projekt
             this.addNewTvCategoryBtn.Name = "addNewTvCategoryBtn";
             this.addNewTvCategoryBtn.Size = new System.Drawing.Size(134, 56);
             this.addNewTvCategoryBtn.TabIndex = 1;
-            this.addNewTvCategoryBtn.Text = "Create new tv category";
+            this.addNewTvCategoryBtn.Text = "Új márka hozzáadása";
             this.addNewTvCategoryBtn.UseVisualStyleBackColor = true;
             this.addNewTvCategoryBtn.Click += new System.EventHandler(this.addNewTvCategoryBtn_Click);
             // 
@@ -66,18 +66,18 @@ namespace Projekt
             this.addNewTvBtn.Name = "addNewTvBtn";
             this.addNewTvBtn.Size = new System.Drawing.Size(134, 56);
             this.addNewTvBtn.TabIndex = 2;
-            this.addNewTvBtn.Text = "Create new TV";
+            this.addNewTvBtn.Text = "Új TV hozzáadása";
             this.addNewTvBtn.UseVisualStyleBackColor = true;
             this.addNewTvBtn.Click += new System.EventHandler(this.addNewTvBtn_Click);
             // 
             // createPdfBtn
             // 
             this.createPdfBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.createPdfBtn.Location = new System.Drawing.Point(612, 133);
+            this.createPdfBtn.Location = new System.Drawing.Point(611, 133);
             this.createPdfBtn.Name = "createPdfBtn";
             this.createPdfBtn.Size = new System.Drawing.Size(134, 56);
             this.createPdfBtn.TabIndex = 3;
-            this.createPdfBtn.Text = "Create new PDF";
+            this.createPdfBtn.Text = "PDF számla létrehozása";
             this.createPdfBtn.UseVisualStyleBackColor = true;
             this.createPdfBtn.Click += new System.EventHandler(this.createPdfBtn_Click);
             // 
@@ -88,7 +88,7 @@ namespace Projekt
             this.exitBtn.Name = "exitBtn";
             this.exitBtn.Size = new System.Drawing.Size(134, 56);
             this.exitBtn.TabIndex = 4;
-            this.exitBtn.Text = "Exit";
+            this.exitBtn.Text = "Kilépés";
             this.exitBtn.UseVisualStyleBackColor = true;
             this.exitBtn.Click += new System.EventHandler(this.exitBtn_Click);
             // 

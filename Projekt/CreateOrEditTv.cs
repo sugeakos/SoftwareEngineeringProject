@@ -202,6 +202,10 @@ namespace Projekt
        
                 updateBtn.Enabled = false;
                 createNewBtn.Enabled = false;
+
+                fillPersonCombo();
+                fillTvCategoryCombo();
+                fillTvCombo();
             }
         }
         private void clearTextBoxes()
@@ -255,6 +259,9 @@ namespace Projekt
           
                 updateBtn.Enabled = true;
                 createNewBtn.Enabled = false;
+                fillPersonCombo();
+                fillTvCategoryCombo();
+                fillTvCombo();
             }
         }
 
@@ -293,6 +300,9 @@ namespace Projekt
             
             updateBtn.Enabled = false;
             createNewBtn.Enabled = true;
+            fillPersonCombo();
+            fillTvCategoryCombo();
+            fillTvCombo();
         }
 
         private void createNewBtn_Click(object sender, EventArgs e)
@@ -306,7 +316,7 @@ namespace Projekt
             {
                 isStillInProgress = 0;
             }
-            if (hasNoMissingParts.Checked)
+            if (hasAnyMissingPart.Checked)
             {
                 missingPart = 1;
             }
@@ -364,41 +374,7 @@ namespace Projekt
                     clearTextBoxes();
                 }
 
-                string insertIntoCustomer = GlobalConstants.INSERT_TO_CUSTOMER_STRING + " (@personId, @tvId)";
-                SqlCommand insertToCustomer = new SqlCommand(insertIntoCustomer, sqlConnection);
-                //selectSqlCommand.Parameters.Clear();
-                insertToCustomer.Parameters.AddWithValue("@personId", comboPersonId.SelectedValue);
-                insertToCustomer.Parameters.AddWithValue("@tvId", comboTvId.SelectedValue);
-
-                try
-                {
-
-
-                    sqlConnection.Open();
-                    int result = insertToCustomer.ExecuteNonQuery();
-                    if (result > 0)
-                    {
-                        
-                    }
-
-                    else
-                    {
-                        MessageBox.Show("Hiba történt", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-                catch (SqlException ex)
-                {
-
-                    throw ex;
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
-                finally
-                {
-                    sqlConnection.Close();
-                }
+                
             }
         }
 
@@ -468,6 +444,7 @@ namespace Projekt
             {
                 sqlConnection.Close();
             }
+            
         }
 
         private void updateBtn_Click(object sender, EventArgs e)
@@ -480,14 +457,24 @@ namespace Projekt
             {
                 isStillInProgress = 0;
             }
-            
+
+            if (hasAnyMissingPart.Checked)
+            {
+                missingPart = 1;
+            }
+            if (hasNoMissingParts.Checked)
+            {
+                missingPart = 0;
+            }
             SqlConnection sqlConnection = new SqlConnection(GlobalConstants.DATA_CONNECTION_STRING);
-            string updateTvTable = "update tv set date_of_correction = @dateOfCorrection, is_it_still_in_progress = @isInProgress, repaired_error = @correctedError, price = @price where id = @id";
+            string updateTvTable = "update tv set date_of_correction = @dateOfCorrection, is_it_still_in_progress = @isInProgress, repaired_error = @correctedError, price = @price, has_any_missing_parts = @hasAnyMissingParts where id = @id";
             SqlCommand updateTv = new SqlCommand(updateTvTable, sqlConnection);
             updateTv.Parameters.AddWithValue("@id", Convert.ToInt32(comboTvId.SelectedValue));
             updateTv.Parameters.AddWithValue("@dateOfCorrection",DateTime.Now);
             updateTv.Parameters.AddWithValue("@isInProgress", Convert.ToInt32(isStillInProgress));
             updateTv.Parameters.AddWithValue("@correctedError",GlobalConstants.firstLetterCapital( txtCorrectedError.Text));
+            updateTv.Parameters.AddWithValue("@hasAnyMissingParts", missingPart);
+    
             updateTv.Parameters.AddWithValue("@price", Convert.ToInt32(txtPrice.Text));
 
             try
@@ -524,6 +511,42 @@ namespace Projekt
                 sqlConnection.Close();
             }
             clearTextBoxes();
+
+            string insertIntoCustomer = GlobalConstants.INSERT_TO_CUSTOMER_STRING + " (@personId, @tvId)";
+            SqlCommand insertToCustomer = new SqlCommand(insertIntoCustomer, sqlConnection);
+            //selectSqlCommand.Parameters.Clear();
+            insertToCustomer.Parameters.AddWithValue("@personId", comboPersonId.SelectedValue);
+            insertToCustomer.Parameters.AddWithValue("@tvId", comboTvId.SelectedValue);
+
+            try
+            {
+
+
+                sqlConnection.Open();
+                int result = insertToCustomer.ExecuteNonQuery();
+                if (result > 0)
+                {
+
+                }
+
+                else
+                {
+                    MessageBox.Show("Hiba történt", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (SqlException ex)
+            {
+
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                sqlConnection.Close();
+            }
         }
     }
     

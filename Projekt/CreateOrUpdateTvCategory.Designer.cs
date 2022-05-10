@@ -50,7 +50,7 @@ namespace Projekt
             this.backToStartBtn.Name = "backToStartBtn";
             this.backToStartBtn.Size = new System.Drawing.Size(102, 39);
             this.backToStartBtn.TabIndex = 1;
-            this.backToStartBtn.Text = "Back to start";
+            this.backToStartBtn.Text = "Vissza a kezdőlapra";
             this.backToStartBtn.UseVisualStyleBackColor = true;
             this.backToStartBtn.Click += new System.EventHandler(this.backToStartBtn_Click);
             // 
@@ -60,9 +60,9 @@ namespace Projekt
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.label1.Location = new System.Drawing.Point(27, 88);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(70, 15);
+            this.label1.Size = new System.Drawing.Size(71, 15);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Category ID";
+            this.label1.Text = "Márka ID-je";
             // 
             // txtCategoryId
             // 
@@ -77,9 +77,9 @@ namespace Projekt
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.label2.Location = new System.Drawing.Point(27, 121);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(90, 15);
+            this.label2.Size = new System.Drawing.Size(71, 15);
             this.label2.TabIndex = 4;
-            this.label2.Text = "Category name";
+            this.label2.Text = "Márka neve";
             // 
             // txtCategoryName
             // 
@@ -95,7 +95,7 @@ namespace Projekt
             this.selectCategoryBtn.Name = "selectCategoryBtn";
             this.selectCategoryBtn.Size = new System.Drawing.Size(131, 57);
             this.selectCategoryBtn.TabIndex = 6;
-            this.selectCategoryBtn.Text = "Search for a category by name";
+            this.selectCategoryBtn.Text = "Keresés márkanév alapján";
             this.selectCategoryBtn.UseVisualStyleBackColor = true;
             this.selectCategoryBtn.Click += new System.EventHandler(this.selectCategoryBtn_Click);
             // 
@@ -106,7 +106,7 @@ namespace Projekt
             this.createNewCategoryBtn.Name = "createNewCategoryBtn";
             this.createNewCategoryBtn.Size = new System.Drawing.Size(131, 57);
             this.createNewCategoryBtn.TabIndex = 7;
-            this.createNewCategoryBtn.Text = "Create new category";
+            this.createNewCategoryBtn.Text = "Új márka hozzáadása";
             this.createNewCategoryBtn.UseVisualStyleBackColor = true;
             this.createNewCategoryBtn.Click += new System.EventHandler(this.createNewCategoryBtn_Click);
             // 
@@ -117,7 +117,7 @@ namespace Projekt
             this.updateCategoryBtn.Name = "updateCategoryBtn";
             this.updateCategoryBtn.Size = new System.Drawing.Size(131, 57);
             this.updateCategoryBtn.TabIndex = 8;
-            this.updateCategoryBtn.Text = "Update category";
+            this.updateCategoryBtn.Text = "Meglévő márka szerkesztése";
             this.updateCategoryBtn.UseVisualStyleBackColor = true;
             this.updateCategoryBtn.Click += new System.EventHandler(this.updateCategoryBtn_Click);
             // 
@@ -126,9 +126,9 @@ namespace Projekt
             this.searchRadioBtn.AutoSize = true;
             this.searchRadioBtn.Location = new System.Drawing.Point(373, 51);
             this.searchRadioBtn.Name = "searchRadioBtn";
-            this.searchRadioBtn.Size = new System.Drawing.Size(55, 17);
+            this.searchRadioBtn.Size = new System.Drawing.Size(63, 17);
             this.searchRadioBtn.TabIndex = 9;
-            this.searchRadioBtn.Text = "Select";
+            this.searchRadioBtn.Text = "Keresés";
             this.searchRadioBtn.UseVisualStyleBackColor = true;
             this.searchRadioBtn.CheckedChanged += new System.EventHandler(this.searchRadioBtn_CheckedChanged);
             // 
@@ -137,9 +137,9 @@ namespace Projekt
             this.updateRadioBtn.AutoSize = true;
             this.updateRadioBtn.Location = new System.Drawing.Point(373, 74);
             this.updateRadioBtn.Name = "updateRadioBtn";
-            this.updateRadioBtn.Size = new System.Drawing.Size(60, 17);
+            this.updateRadioBtn.Size = new System.Drawing.Size(82, 17);
             this.updateRadioBtn.TabIndex = 10;
-            this.updateRadioBtn.Text = "Update";
+            this.updateRadioBtn.Text = "Szerkesztés";
             this.updateRadioBtn.UseVisualStyleBackColor = true;
             this.updateRadioBtn.CheckedChanged += new System.EventHandler(this.updateRadioBtn_CheckedChanged);
             // 
@@ -148,9 +148,9 @@ namespace Projekt
             this.createNewRadioBtn.AutoSize = true;
             this.createNewRadioBtn.Location = new System.Drawing.Point(373, 97);
             this.createNewRadioBtn.Name = "createNewRadioBtn";
-            this.createNewRadioBtn.Size = new System.Drawing.Size(47, 17);
+            this.createNewRadioBtn.Size = new System.Drawing.Size(95, 17);
             this.createNewRadioBtn.TabIndex = 11;
-            this.createNewRadioBtn.Text = "New";
+            this.createNewRadioBtn.Text = "Új hozzáadása";
             this.createNewRadioBtn.UseVisualStyleBackColor = true;
             this.createNewRadioBtn.CheckedChanged += new System.EventHandler(this.createNewRadioBtn_CheckedChanged);
             // 
@@ -172,7 +172,7 @@ namespace Projekt
             this.Controls.Add(this.backToStartBtn);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CreateOrUpdateTvCategory";
-            this.Text = "Create Or Update Tv Category";
+            this.Text = "Új márka hozzáadása, vagy a meglévő szerkesztése";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CreateOrUpdateTvCategory_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();

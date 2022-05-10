@@ -71,7 +71,7 @@ namespace Projekt
             this.backToStartBtn.Name = "backToStartBtn";
             this.backToStartBtn.Size = new System.Drawing.Size(102, 39);
             this.backToStartBtn.TabIndex = 0;
-            this.backToStartBtn.Text = "Back to start";
+            this.backToStartBtn.Text = "Vissza a kezdőlapra";
             this.backToStartBtn.UseVisualStyleBackColor = true;
             this.backToStartBtn.Click += new System.EventHandler(this.backToStartBtn_Click);
             // 
@@ -80,9 +80,9 @@ namespace Projekt
             this.createNewRadioBtn.AutoSize = true;
             this.createNewRadioBtn.Location = new System.Drawing.Point(44, 67);
             this.createNewRadioBtn.Name = "createNewRadioBtn";
-            this.createNewRadioBtn.Size = new System.Drawing.Size(50, 19);
+            this.createNewRadioBtn.Size = new System.Drawing.Size(107, 19);
             this.createNewRadioBtn.TabIndex = 14;
-            this.createNewRadioBtn.Text = "New";
+            this.createNewRadioBtn.Text = "Új hozzáadása";
             this.createNewRadioBtn.UseVisualStyleBackColor = true;
             this.createNewRadioBtn.CheckedChanged += new System.EventHandler(this.createNewRadioBtn_CheckedChanged);
             // 
@@ -91,9 +91,9 @@ namespace Projekt
             this.updateRadioBtn.AutoSize = true;
             this.updateRadioBtn.Location = new System.Drawing.Point(44, 44);
             this.updateRadioBtn.Name = "updateRadioBtn";
-            this.updateRadioBtn.Size = new System.Drawing.Size(65, 19);
+            this.updateRadioBtn.Size = new System.Drawing.Size(91, 19);
             this.updateRadioBtn.TabIndex = 13;
-            this.updateRadioBtn.Text = "Update";
+            this.updateRadioBtn.Text = "Szerkesztés";
             this.updateRadioBtn.UseVisualStyleBackColor = true;
             this.updateRadioBtn.CheckedChanged += new System.EventHandler(this.updateRadioBtn_CheckedChanged);
             // 
@@ -102,9 +102,9 @@ namespace Projekt
             this.searchRadioBtn.AutoSize = true;
             this.searchRadioBtn.Location = new System.Drawing.Point(44, 21);
             this.searchRadioBtn.Name = "searchRadioBtn";
-            this.searchRadioBtn.Size = new System.Drawing.Size(59, 19);
+            this.searchRadioBtn.Size = new System.Drawing.Size(70, 19);
             this.searchRadioBtn.TabIndex = 12;
-            this.searchRadioBtn.Text = "Select";
+            this.searchRadioBtn.Text = "Keresés";
             this.searchRadioBtn.UseVisualStyleBackColor = true;
             this.searchRadioBtn.CheckedChanged += new System.EventHandler(this.searchRadioBtn_CheckedChanged);
             // 
@@ -255,7 +255,7 @@ namespace Projekt
             this.groupBox1.Size = new System.Drawing.Size(200, 100);
             this.groupBox1.TabIndex = 31;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Operations";
+            this.groupBox1.Text = "Műveletek";
             // 
             // groupBox2
             // 
@@ -269,7 +269,7 @@ namespace Projekt
             this.groupBox2.Size = new System.Drawing.Size(200, 145);
             this.groupBox2.TabIndex = 32;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Search by";
+            this.groupBox2.Text = "Keresés";
             // 
             // searchByFixRadio
             // 
@@ -390,7 +390,7 @@ namespace Projekt
             this.Controls.Add(this.backToStartBtn);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CreateOrUpdateAPerson";
-            this.Text = "Create Or Update A Person";
+            this.Text = "Új személy hozzáadása, vagy meglévő szerkesztése";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CreateOrUpdateAPerson_FormClosed);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

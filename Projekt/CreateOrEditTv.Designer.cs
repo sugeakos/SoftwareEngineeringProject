@@ -47,16 +47,16 @@ namespace Projekt
             this.txtDateOfCorrection = new System.Windows.Forms.TextBox();
             this.txtCorrectedError = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.stillInProgressRadio = new System.Windows.Forms.RadioButton();
             this.notInProgressRadio = new System.Windows.Forms.RadioButton();
+            this.stillInProgressRadio = new System.Windows.Forms.RadioButton();
             this.txtMissingParts = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.selectRadio = new System.Windows.Forms.RadioButton();
-            this.updateRadio = new System.Windows.Forms.RadioButton();
             this.createRadio = new System.Windows.Forms.RadioButton();
-            this.hasAnyMissingPart = new System.Windows.Forms.RadioButton();
+            this.updateRadio = new System.Windows.Forms.RadioButton();
+            this.selectRadio = new System.Windows.Forms.RadioButton();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.hasNoMissingParts = new System.Windows.Forms.RadioButton();
+            this.hasAnyMissingPart = new System.Windows.Forms.RadioButton();
             this.updateBtn = new System.Windows.Forms.Button();
             this.createNewBtn = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
@@ -74,7 +74,7 @@ namespace Projekt
             this.backToStartBtn.Name = "backToStartBtn";
             this.backToStartBtn.Size = new System.Drawing.Size(102, 39);
             this.backToStartBtn.TabIndex = 1;
-            this.backToStartBtn.Text = "Back to start";
+            this.backToStartBtn.Text = "Vissza a kezdőlapra";
             this.backToStartBtn.UseVisualStyleBackColor = true;
             this.backToStartBtn.Click += new System.EventHandler(this.backToStartBtn_Click);
             // 
@@ -92,18 +92,18 @@ namespace Projekt
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(12, 100);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(54, 13);
+            this.label2.Size = new System.Drawing.Size(60, 13);
             this.label2.TabIndex = 3;
-            this.label2.Text = "Person ID";
+            this.label2.Text = "Személy ID";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(12, 130);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(51, 13);
+            this.label3.Size = new System.Drawing.Size(54, 13);
             this.label3.TabIndex = 4;
-            this.label3.Text = "Márka ID";
+            this.label3.Text = "Márka  ID";
             // 
             // label4
             // 
@@ -213,17 +213,6 @@ namespace Projekt
             this.groupBox1.TabIndex = 18;
             this.groupBox1.TabStop = false;
             // 
-            // stillInProgressRadio
-            // 
-            this.stillInProgressRadio.AutoSize = true;
-            this.stillInProgressRadio.Location = new System.Drawing.Point(6, 19);
-            this.stillInProgressRadio.Name = "stillInProgressRadio";
-            this.stillInProgressRadio.Size = new System.Drawing.Size(46, 17);
-            this.stillInProgressRadio.TabIndex = 0;
-            this.stillInProgressRadio.TabStop = true;
-            this.stillInProgressRadio.Text = "Igen";
-            this.stillInProgressRadio.UseVisualStyleBackColor = true;
-            // 
             // notInProgressRadio
             // 
             this.notInProgressRadio.AutoSize = true;
@@ -234,6 +223,17 @@ namespace Projekt
             this.notInProgressRadio.TabStop = true;
             this.notInProgressRadio.Text = "Nem";
             this.notInProgressRadio.UseVisualStyleBackColor = true;
+            // 
+            // stillInProgressRadio
+            // 
+            this.stillInProgressRadio.AutoSize = true;
+            this.stillInProgressRadio.Location = new System.Drawing.Point(6, 19);
+            this.stillInProgressRadio.Name = "stillInProgressRadio";
+            this.stillInProgressRadio.Size = new System.Drawing.Size(46, 17);
+            this.stillInProgressRadio.TabIndex = 0;
+            this.stillInProgressRadio.TabStop = true;
+            this.stillInProgressRadio.Text = "Igen";
+            this.stillInProgressRadio.UseVisualStyleBackColor = true;
             // 
             // txtMissingParts
             // 
@@ -254,28 +254,17 @@ namespace Projekt
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Műveletek";
             // 
-            // groupBox3
+            // createRadio
             // 
-            this.groupBox3.Controls.Add(this.hasNoMissingParts);
-            this.groupBox3.Controls.Add(this.hasAnyMissingPart);
-            this.groupBox3.Location = new System.Drawing.Point(588, 130);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(200, 100);
-            this.groupBox3.TabIndex = 21;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Van hiányzó elem az átvétel pillanatában";
-            // 
-            // selectRadio
-            // 
-            this.selectRadio.AutoSize = true;
-            this.selectRadio.Location = new System.Drawing.Point(7, 20);
-            this.selectRadio.Name = "selectRadio";
-            this.selectRadio.Size = new System.Drawing.Size(63, 17);
-            this.selectRadio.TabIndex = 0;
-            this.selectRadio.TabStop = true;
-            this.selectRadio.Text = "Keresés";
-            this.selectRadio.UseVisualStyleBackColor = true;
-            this.selectRadio.CheckedChanged += new System.EventHandler(this.selectRadio_CheckedChanged);
+            this.createRadio.AutoSize = true;
+            this.createRadio.Location = new System.Drawing.Point(7, 68);
+            this.createRadio.Name = "createRadio";
+            this.createRadio.Size = new System.Drawing.Size(87, 17);
+            this.createRadio.TabIndex = 2;
+            this.createRadio.TabStop = true;
+            this.createRadio.Text = "Új megadása";
+            this.createRadio.UseVisualStyleBackColor = true;
+            this.createRadio.CheckedChanged += new System.EventHandler(this.createRadio_CheckedChanged);
             // 
             // updateRadio
             // 
@@ -289,29 +278,28 @@ namespace Projekt
             this.updateRadio.UseVisualStyleBackColor = true;
             this.updateRadio.CheckedChanged += new System.EventHandler(this.updateRadio_CheckedChanged);
             // 
-            // createRadio
+            // selectRadio
             // 
-            this.createRadio.AutoSize = true;
-            this.createRadio.Location = new System.Drawing.Point(7, 68);
-            this.createRadio.Name = "createRadio";
-            this.createRadio.Size = new System.Drawing.Size(87, 17);
-            this.createRadio.TabIndex = 2;
-            this.createRadio.TabStop = true;
-            this.createRadio.Text = "Új megadása";
-            this.createRadio.UseVisualStyleBackColor = true;
-            this.createRadio.CheckedChanged += new System.EventHandler(this.createRadio_CheckedChanged);
+            this.selectRadio.AutoSize = true;
+            this.selectRadio.Location = new System.Drawing.Point(7, 20);
+            this.selectRadio.Name = "selectRadio";
+            this.selectRadio.Size = new System.Drawing.Size(63, 17);
+            this.selectRadio.TabIndex = 0;
+            this.selectRadio.TabStop = true;
+            this.selectRadio.Text = "Keresés";
+            this.selectRadio.UseVisualStyleBackColor = true;
+            this.selectRadio.CheckedChanged += new System.EventHandler(this.selectRadio_CheckedChanged);
             // 
-            // hasAnyMissingPart
+            // groupBox3
             // 
-            this.hasAnyMissingPart.AutoSize = true;
-            this.hasAnyMissingPart.Location = new System.Drawing.Point(7, 42);
-            this.hasAnyMissingPart.Name = "hasAnyMissingPart";
-            this.hasAnyMissingPart.Size = new System.Drawing.Size(46, 17);
-            this.hasAnyMissingPart.TabIndex = 0;
-            this.hasAnyMissingPart.TabStop = true;
-            this.hasAnyMissingPart.Text = "Igen";
-            this.hasAnyMissingPart.UseVisualStyleBackColor = true;
-            this.hasAnyMissingPart.CheckedChanged += new System.EventHandler(this.hasAnyMissingPart_CheckedChanged);
+            this.groupBox3.Controls.Add(this.hasNoMissingParts);
+            this.groupBox3.Controls.Add(this.hasAnyMissingPart);
+            this.groupBox3.Location = new System.Drawing.Point(588, 130);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(200, 100);
+            this.groupBox3.TabIndex = 21;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Van hiányzó elem az átvétel pillanatában";
             // 
             // hasNoMissingParts
             // 
@@ -324,6 +312,18 @@ namespace Projekt
             this.hasNoMissingParts.Text = "Nem";
             this.hasNoMissingParts.UseVisualStyleBackColor = true;
             this.hasNoMissingParts.CheckedChanged += new System.EventHandler(this.hasNoMissingParts_CheckedChanged);
+            // 
+            // hasAnyMissingPart
+            // 
+            this.hasAnyMissingPart.AutoSize = true;
+            this.hasAnyMissingPart.Location = new System.Drawing.Point(7, 42);
+            this.hasAnyMissingPart.Name = "hasAnyMissingPart";
+            this.hasAnyMissingPart.Size = new System.Drawing.Size(46, 17);
+            this.hasAnyMissingPart.TabIndex = 0;
+            this.hasAnyMissingPart.TabStop = true;
+            this.hasAnyMissingPart.Text = "Igen";
+            this.hasAnyMissingPart.UseVisualStyleBackColor = true;
+            this.hasAnyMissingPart.CheckedChanged += new System.EventHandler(this.hasAnyMissingPart_CheckedChanged);
             // 
             // updateBtn
             // 
@@ -402,7 +402,7 @@ namespace Projekt
             this.Controls.Add(this.backToStartBtn);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CreateOrEditTv";
-            this.Text = "Create Or Edit Tv";
+            this.Text = "Új TV hozzáadása, vagy meglévő szerkesztése";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CreateOrEditTv_FormClosed);
             this.Load += new System.EventHandler(this.CreateOrEditTv_Load);
             this.groupBox1.ResumeLayout(false);
