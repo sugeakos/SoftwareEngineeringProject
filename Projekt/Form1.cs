@@ -53,5 +53,10 @@ namespace Projekt
             createPdf.Show(this);
             Hide();
         }
+
+        private void MainView_Load(object sender, EventArgs e)
+        {
+           pictureBox1.SizeMode= PictureBoxSizeMode.StretchImage;
+        }
     }
 }
