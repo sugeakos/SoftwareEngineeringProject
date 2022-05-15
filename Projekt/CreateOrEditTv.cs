@@ -303,6 +303,7 @@ namespace Projekt
             fillPersonCombo();
             fillTvCategoryCombo();
             fillTvCombo();
+            clearTextBoxes();
         }
 
         private void createNewBtn_Click(object sender, EventArgs e)

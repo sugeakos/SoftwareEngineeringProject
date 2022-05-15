@@ -188,6 +188,43 @@ namespace Projekt
             {
                 sqlConnection.Close();
             }
+
+           
+            string selectCategoryByNameCmd = @"select * from tv_category where category_name like '%' + @catName + '%'";
+            SqlCommand selectSqlCatCommand = new SqlCommand(selectCategoryByNameCmd, sqlConnection);
+            //selectSqlCommand.Parameters.Clear();
+            selectSqlCatCommand.Parameters.AddWithValue("@catName", GlobalConstants.firstLetterCapital(txtCategoryName.Text));
+
+            try
+            {
+
+
+                sqlConnection.Open();
+                SqlDataReader reader = selectSqlCatCommand.ExecuteReader(CommandBehavior.SingleRow);
+                if (reader.Read())
+                {
+                    txtCategoryId.Text = reader[0].ToString();
+                    txtCategoryName.Text = reader[1].ToString();
+                }
+
+                else
+                {
+                    MessageBox.Show("A keresett márka nem található: " + txtCategoryName.Text, "Nem található", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (SqlException ex)
+            {
+
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                sqlConnection.Close();
+            }
         }
         private void clearTextBoxes()
         {

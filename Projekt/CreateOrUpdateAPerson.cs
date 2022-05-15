@@ -236,7 +236,7 @@ namespace Projekt
                 
                 SqlConnection sqlConnection2 = new SqlConnection(GlobalConstants.DATA_CONNECTION_STRING);
                 string selectPersonByLastNameCmdString = selectCommandString("last_name", "'%' + @lastName + '%'");
-                MessageBox.Show(selectPersonByLastNameCmdString);
+                
                 SqlCommand selectSqlCommand = new SqlCommand(selectPersonByLastNameCmdString, sqlConnection2);
                 //selectSqlCommand.Parameters.Clear();
                 selectSqlCommand.Parameters.AddWithValue("@lastName",GlobalConstants.firstLetterCapital(txtLastName.Text));
